@@ -5,8 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Power-Calc",
-  description: "Electrical calculation tools for electricians and hobbyists",
+  title: "Calculator Collection",
+  description:
+    "Roofing, trigonometry, containment, and electrical calculation tools for electricians, sheet metal workers, and hobbyists",
 };
 
 export default function RootLayout({
