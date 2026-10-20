@@ -33,10 +33,10 @@ function TrigFnCard() {
     <>
       <Input label="Angle" type="number" value={deg} onChange={(e) => setDeg(e.target.value)} placeholder="e.g. 30" min="0" step="0.1" />
       {s !== null && c !== null && t !== null && (
-        <div className="flex gap-3 mt-3">
-          <ResultDisplay label="sin" value={fmt(s) ?? ''} />
-          <ResultDisplay label="cos" value={fmt(c) ?? ''} />
-          <ResultDisplay label="tan" value={fmt(t) ?? ''} />
+        <div className="flex gap-2 mt-3">
+          <ResultDisplay label="sin" value={fmt(s) ?? ''} compact className="flex-1 min-w-0" />
+          <ResultDisplay label="cos" value={fmt(c) ?? ''} compact className="flex-1 min-w-0" />
+          <ResultDisplay label="tan" value={fmt(t) ?? ''} compact className="flex-1 min-w-0" />
         </div>
       )}
     </>
@@ -207,10 +207,10 @@ function GeneralAngleCard() {
         ))}
       </div>
       {ang !== null && angB !== null && angC !== null ? (
-        <div className="flex gap-3">
-          <div className="flex-1"><ResultDisplay label="∠A" value={fmt(ang, 2) ?? ''} unit="°" /></div>
-          <div className="flex-1"><ResultDisplay label="∠B" value={fmt(angB, 2) ?? ''} unit="°" /></div>
-          <div className="flex-1"><ResultDisplay label="∠C" value={fmt(angC, 2) ?? ''} unit="°" /></div>
+        <div className="flex gap-2">
+          <div className="flex-1 min-w-0"><ResultDisplay label="∠A" value={fmt(ang, 2) ?? ''} unit="°" compact /></div>
+          <div className="flex-1 min-w-0"><ResultDisplay label="∠B" value={fmt(angB, 2) ?? ''} unit="°" compact /></div>
+          <div className="flex-1 min-w-0"><ResultDisplay label="∠C" value={fmt(angC, 2) ?? ''} unit="°" compact /></div>
         </div>
       ) : (
         <p className="mt-3 text-xs text-gray-400">Sides must form a valid non-degenerate triangle.</p>
@@ -231,10 +231,10 @@ function InverseCard() {
     <>
       <Input label="Input x" type="number" value={x} onChange={(e) => setX(e.target.value)} placeholder="0.5" min="0" step="0.01" />
       {ta !== null && (
-        <div className="flex gap-3">
-          <div className="flex-1"><ResultDisplay label="asin(x)" value={sa === null ? '—' : fmt(sa, 2) ?? ''} unit="°" /></div>
-          <div className="flex-1"><ResultDisplay label="acos(x)" value={ca === null ? '—' : fmt(ca, 2) ?? ''} unit="°" /></div>
-          <div className="flex-1"><ResultDisplay label="atan(x)" value={fmt(ta, 2) ?? ''} unit="°" /></div>
+        <div className="flex gap-2">
+          <div className="flex-1 min-w-0"><ResultDisplay label="asin(x)" value={sa === null ? '—' : fmt(sa, 2) ?? ''} unit="°" compact /></div>
+          <div className="flex-1 min-w-0"><ResultDisplay label="acos(x)" value={ca === null ? '—' : fmt(ca, 2) ?? ''} unit="°" compact /></div>
+          <div className="flex-1 min-w-0"><ResultDisplay label="atan(x)" value={fmt(ta, 2) ?? ''} unit="°" compact /></div>
         </div>
       )}
     </>

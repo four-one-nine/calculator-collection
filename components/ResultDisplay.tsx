@@ -8,9 +8,11 @@ interface ResultDisplayProps {
   value: string | number;
   unit?: string;
   className?: string;
+  /** Compact mode: denser value (smaller text/padding, no copy icon) so several can sit beside each other on narrow screens. */
+  compact?: boolean;
 }
 
-export function ResultDisplay({ label, value, unit, className = '' }: ResultDisplayProps) {
+export function ResultDisplay({ label, value, unit, className = '', compact = false }: ResultDisplayProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -20,25 +22,30 @@ export function ResultDisplay({ label, value, unit, className = '' }: ResultDisp
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const pad = compact ? 'px-2 py-1.5' : 'p-3';
+  const mt = compact ? 'mt-0' : 'mt-3';
+
   return (
-    <div className={`bg-gray-700 rounded-lg p-3 mt-3 ${className}`}>
-      <div className="flex items-center justify-between">
-        <span className="text-gray-300 text-sm">{label}</span>
-        <button
-          onClick={handleCopy}
-          className="p-1 hover:bg-gray-600 rounded transition-colors"
-          title="Copy to clipboard"
-        >
-          {copied ? (
-            <CheckIcon className="w-5 h-5 text-green-400" />
-          ) : (
-            <ClipboardIcon className="w-5 h-5 text-gray-400" />
-          )}
-        </button>
+    <div className={`bg-gray-700 rounded-lg ${pad} ${mt} ${className} overflow-hidden`}>
+      <div className={`flex items-center justify-between ${compact ? 'gap-1.5' : ''}`}>
+        <span className={`text-gray-300 ${compact ? 'text-xs truncate' : 'text-sm'}`}>{label}</span>
+        {!compact && (
+          <button
+            onClick={handleCopy}
+            className="p-1 hover:bg-gray-600 rounded transition-colors shrink-0"
+            title="Copy to clipboard"
+          >
+            {copied ? (
+              <CheckIcon className="w-5 h-5 text-green-400" />
+            ) : (
+              <ClipboardIcon className="w-5 h-5 text-gray-400" />
+            )}
+          </button>
+        )}
       </div>
-      <div className="text-2xl font-bold text-white mt-1">
+      <div className={`font-bold text-white mt-1 truncate ${compact ? 'text-base' : 'text-2xl'}`}>
         {value}
-        {unit && <span className="text-lg text-gray-400 ml-1">{unit}</span>}
+        {unit && <span className={`text-gray-400 ml-1 ${compact ? 'text-xs' : 'text-lg'}`}>{unit}</span>}
       </div>
     </div>
   );
